@@ -36,7 +36,25 @@ const sendMessage = async (req, res) => {
 }
 
 const getMessage = async (req, res) => {
-    res.send('get message')
+    const { userId } = req.user
+    const { id: requestUserId } = req.params
+
+    const chat = await Chat.findOne({
+        participants: { $all: [userId, requestUserId] }
+    })
+        .populate(
+            {
+                path: 'messages',
+                populate: [
+                    { path: 'sender', select: 'name' },
+                    { path: 'receiver', select: 'name' }
+                ]
+            }
+        )
+
+    const messages = chat ? chat : []
+
+    res.status(StatusCodes.OK).json({ messages })
 }
 
 module.exports = {
