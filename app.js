@@ -31,6 +31,7 @@ const connectDB = require('./db/connection')
 // routers
 const authRouter = require('./routes/authRoutes')
 const userRouter = require('./routes/userRoutes')
+const messageRouter = require('./routes/messageRoutes')
 
 // middleware
 const notFoundMiddleware = require('./middleware/not-found')
@@ -61,6 +62,7 @@ app.use(fileUpload({ useTempFiles: true }))
 
 app.use('/api/v1/auth', authRouter)
 app.use('/api/v1/users', userRouter)
+app.use('/api/v1/messages', messageRouter)
 
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleWare)
