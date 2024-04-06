@@ -2,7 +2,13 @@ import Conversation from "./Conversation";
 
 const Conversations = () => {
   return (
-    <div className="py-2 flex flex-col overflow-auto">
+    <div className="py-2 flex flex-col overflow-auto mb-8 pr-2">
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
+      <Conversation />
       <Conversation />
       <Conversation />
       <Conversation />

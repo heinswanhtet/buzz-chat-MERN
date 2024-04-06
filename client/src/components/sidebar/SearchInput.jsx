@@ -6,7 +6,7 @@ const SearchInput = () => {
       <input
         type="text"
         placeholder="Search...."
-        className="input input-bordered input-sm rounded-full"
+        className="input input-bordered input-sm rounded-full w-full"
       />
       <button type="submit">
         <FcSearch className="w-7 h-7 outline-none" />
