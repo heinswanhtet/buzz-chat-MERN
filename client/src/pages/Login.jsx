@@ -16,7 +16,6 @@ const Login = () => {
   const onSubmit = async (e) => {
     e.preventDefault();
     const { email, password } = values;
-    console.log(values);
     await login(email, password);
   };
 
