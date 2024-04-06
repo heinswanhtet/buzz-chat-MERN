@@ -4,8 +4,9 @@ import Messages from "./Messages";
 const MessageContainer = () => {
   return (
     <div className="md:min-w-[550px] flex flex-col">
-      <div className="">
-        <span>To:</span> <span>Phone Htet Myint</span>
+      <div className="bg-slate-400 px-4 py-2 mb-2">
+        <span className="label-text text-white">To:</span>{" "}
+        <span className="text-white font-bold">Phone Htet Myint</span>
       </div>
 
       <Messages />
