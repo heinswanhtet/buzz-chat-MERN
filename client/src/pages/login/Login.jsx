@@ -1,7 +1,7 @@
 const Login = () => {
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
-      <div className="w-full p-6 rounded-lg shadow-md bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10">
+      <div className="w-full p-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10">
         <h1 className="text-3xl font-semibold text-center text-gray-700">
           Login <span className="text-pink-400">Buzz Chat</span>
         </h1>
@@ -30,7 +30,7 @@ const Login = () => {
           </div>
 
           <p className="text-sm  mt-2 inline-block">
-            Don't have an account?{" "}
+            Don't have an account?
             <span className="hover:text-blue-400 cursor-pointer">Register</span>
           </p>
 
