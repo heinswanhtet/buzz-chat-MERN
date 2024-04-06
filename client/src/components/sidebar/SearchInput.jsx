@@ -2,7 +2,7 @@ import { FcSearch } from "react-icons/fc";
 
 const SearchInput = () => {
   return (
-    <form className="flex items-center gap-2">
+    <form className="flex items-center gap-2 mb-2.5">
       <input
         type="text"
         placeholder="Search...."
