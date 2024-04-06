@@ -1,13 +1,11 @@
 import "./App.css";
-import Home from "./pages/home/Home";
-import Login from "./pages/login/Login";
-import SignUp from "./pages/signUp/SignUp";
+import { Home, Login, Register } from "./pages";
 
 function App() {
   return (
     <div className="p-4 h-screen flex justify-center items-center">
+      {/* <Register /> */}
       {/* <Login /> */}
-      {/* <SignUp /> */}
       <Home />
     </div>
   );

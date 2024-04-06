@@ -1,4 +1,4 @@
-const SignUp = () => {
+const Register = () => {
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10">
@@ -56,4 +56,4 @@ const SignUp = () => {
     </div>
   );
 };
-export default SignUp;
+export default Register;
