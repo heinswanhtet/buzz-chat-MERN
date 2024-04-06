@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Register = () => {
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
@@ -49,7 +51,9 @@ const Register = () => {
 
           <p className="text-sm  mt-2 text-center">
             Already have an account?{" "}
-            <span className="hover:text-blue-400 cursor-pointer">Login</span>
+            <Link to={"/login"} className="hover:text-blue-400 cursor-pointer">
+              Login
+            </Link>
           </p>
         </form>
       </div>
