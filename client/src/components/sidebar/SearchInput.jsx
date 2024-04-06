@@ -1,4 +1,17 @@
+import { FcSearch } from "react-icons/fc";
+
 const SearchInput = () => {
-  return <div>SearchInput</div>;
+  return (
+    <form className="flex items-center gap-2">
+      <input
+        type="text"
+        placeholder="Search...."
+        className="input input-bordered input-sm rounded-full"
+      />
+      <button type="submit">
+        <FcSearch className="w-7 h-7 outline-none" />
+      </button>
+    </form>
+  );
 };
 export default SearchInput;
