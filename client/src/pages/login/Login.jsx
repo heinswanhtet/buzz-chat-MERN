@@ -29,17 +29,17 @@ const Login = () => {
             />
           </div>
 
-          <p className="text-sm  mt-2 inline-block">
-            Don't have an account?
-            <span className="hover:text-blue-400 cursor-pointer">Register</span>
-          </p>
-
           <button
             type="submit"
-            className="btn btn-block btn-secondary btn-sm mt-2"
+            className="btn btn-block btn-secondary btn-sm mt-6"
           >
             Login
           </button>
+
+          <p className="text-sm  mt-2 text-center">
+            Don't have an account?{" "}
+            <span className="hover:text-blue-400 cursor-pointer">Register</span>
+          </p>
         </form>
       </div>
     </div>

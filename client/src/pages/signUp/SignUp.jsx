@@ -40,17 +40,17 @@ const SignUp = () => {
             />
           </div>
 
-          <p className="text-sm  mt-2 inline-block">
-            Already have an account?{" "}
-            <span className="hover:text-blue-400 cursor-pointer">Login</span>
-          </p>
-
           <button
             type="submit"
-            className="btn btn-block btn-secondary btn-sm mt-2"
+            className="btn btn-block btn-secondary btn-sm mt-6"
           >
             Sign Up
           </button>
+
+          <p className="text-sm  mt-2 text-center">
+            Already have an account?{" "}
+            <span className="hover:text-blue-400 cursor-pointer">Login</span>
+          </p>
         </form>
       </div>
     </div>
