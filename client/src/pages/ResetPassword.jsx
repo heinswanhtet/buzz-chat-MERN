@@ -1,13 +1,12 @@
 import { useState } from "react"
-import useLogin from "../hooks/useLogin"
-import { Link } from "react-router-dom"
+import useResetPassword from "../hooks/useResetPassword"
 
-const Login = () => {
+const Register = () => {
     const [values, setValues] = useState({
-        email: "",
         password: "",
+        confirmPassword: "",
     })
-    const { isLoading, login } = useLogin()
+    const { isLoading, resetPassword } = useResetPassword()
 
     const handleChange = (e) => {
         setValues({ ...values, [e.target.name]: e.target.value })
@@ -15,32 +14,18 @@ const Login = () => {
 
     const onSubmit = async (e) => {
         e.preventDefault()
-        const { email, password } = values
-        await login(email, password)
+        await resetPassword({ ...values })
     }
 
     return (
         <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
             <div className="w-full p-6 rounded-lg transition-all duration-200 shadow-md hover:shadow-lg bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-10">
                 <h1 className="text-3xl font-semibold text-center text-gray-700">
-                    Login <span className="text-pink-400">Buzz Chat</span>
+                    Reset Password{" "}
+                    <span className="text-pink-400">Buzz Chat</span>
                 </h1>
 
                 <form onSubmit={onSubmit}>
-                    <div>
-                        <label className="label p-2">
-                            <span className="text-base label-text">Email</span>
-                        </label>
-                        <input
-                            type="email"
-                            placeholder="Enter email"
-                            className="w-full input input-bordered h-10"
-                            name="email"
-                            value={values.email}
-                            onChange={handleChange}
-                        />
-                    </div>
-
                     <div>
                         <label className="label p-2">
                             <span className="text-base label-text">
@@ -57,36 +42,32 @@ const Login = () => {
                         />
                     </div>
 
+                    <div>
+                        <label className="label p-2">
+                            <span className="text-base label-text">
+                                Confirm Password
+                            </span>
+                        </label>
+                        <input
+                            type="password"
+                            placeholder="Confirm password"
+                            className="w-full input input-bordered h-10"
+                            name="confirmPassword"
+                            value={values.confirmPassword}
+                            onChange={handleChange}
+                        />
+                    </div>
+
                     <button
                         type="submit"
                         className="btn btn-block btn-secondary btn-sm mt-6"
                         disabled={isLoading}
                     >
-                        Login
+                        Set New Password
                     </button>
-
-                    <p className="text-sm  mt-2 text-center">
-                        Don't have an account?{" "}
-                        <Link
-                            to={"/register"}
-                            className="hover:text-blue-400 cursor-pointer"
-                        >
-                            Register
-                        </Link>
-                    </p>
-
-                    <p className="text-sm  mt-2 text-center">
-                        Forgot your password?{" "}
-                        <Link
-                            to={"/forgot-password"}
-                            className="hover:text-blue-400 cursor-pointer"
-                        >
-                            Reset Password
-                        </Link>
-                    </p>
                 </form>
             </div>
         </div>
     )
 }
-export default Login
+export default Register

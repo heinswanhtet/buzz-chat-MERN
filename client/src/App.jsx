@@ -5,10 +5,16 @@ import {
     Navigate,
 } from "react-router-dom"
 import "./App.css"
-import { Home, Login, Register } from "./pages"
+import {
+    ForgotPassword,
+    Home,
+    Login,
+    Register,
+    ResetPassword,
+    VerifyEmail,
+} from "./pages"
 import { useAuthContext } from "./context/AuthContext"
 import { Toaster } from "react-hot-toast"
-import VerifyEmail from "./pages/VerifyEmail"
 
 function App() {
     const { user, isLoading } = useAuthContext()
@@ -38,8 +44,16 @@ function App() {
                         element={user ? <Navigate to="/" /> : <Login />}
                     />
                     <Route
+                        path="/forgot-password"
+                        element={<ForgotPassword />}
+                    />
+                    <Route
                         path="/user/verify-email"
                         element={<VerifyEmail />}
+                    />
+                    <Route
+                        path="/user/reset-password"
+                        element={<ResetPassword />}
                     />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
