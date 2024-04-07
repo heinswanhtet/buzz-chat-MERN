@@ -26,11 +26,14 @@ const AuthProvider = ({ children }) => {
   };
 
   const logoutUser = async () => {
+    setIsLoading(true);
     try {
       await axios.delete("/api/v1/auth/logout");
       removeUser();
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
     }
   };
 
