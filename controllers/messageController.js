@@ -32,7 +32,7 @@ const sendMessage = async (req, res) => {
     chat.messages.push(newMessage._id)
     await chat.save()
 
-    res.status(StatusCodes.CREATED).json({ conversation: newMessage })
+    res.status(StatusCodes.CREATED).json({ message: newMessage })
 }
 
 const getMessage = async (req, res) => {
@@ -51,7 +51,7 @@ const getMessage = async (req, res) => {
 
     const messages = chat ? chat : []
 
-    res.status(StatusCodes.OK).json({ conversation: messages })
+    res.status(StatusCodes.OK).json({ messages })
 }
 
 module.exports = {

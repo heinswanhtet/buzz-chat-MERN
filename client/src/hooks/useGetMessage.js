@@ -13,7 +13,7 @@ const useGetMessage = () => {
             const { data } = await axios.get(
                 `/api/v1/messages/${selectedConversation._id}`
             )
-            setMessages(data.conversation.messages)
+            setMessages(data.messages)
         } catch (error) {
             toast.error(error.response.data.msg)
         } finally {
