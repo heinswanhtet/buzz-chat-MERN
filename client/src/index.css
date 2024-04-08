@@ -3,26 +3,26 @@
 @tailwind utilities;
 
 body {
-  background: linear-gradient(rgba(214 190 207 / 82%), rgba(0, 0, 0, 0.1)),
-    url("/background-image-1.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: right;
+    background: linear-gradient(rgba(214 190 207 / 82%), rgba(0, 0, 0, 0.1)),
+        url("/background-image-1.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right;
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  /* background: #555; */
+    /* background: #555; */
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #515151;
-  border-radius: 5px;
+    background: #515151;
+    border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #242424;
+    background: #242424;
 }
