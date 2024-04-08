@@ -1,19 +1,15 @@
 import useGetMessage from "../../hooks/useGetMessage"
-import Message from "./Message"
+import MessageSkeleton from "../../skeletons/MessageSkeleton"
 
 const Messages = () => {
     const { loading, messages } = useGetMessage()
 
-    console.log(messages)
-
     return (
         <div className="flex-1 px-2 overflow-auto">
-            <Message placing={"chat-start"} />
-            <Message placing={"chat-end"} />
-            <Message placing={"chat-start"} />
-            <Message placing={"chat-end"} />
-            <Message placing={"chat-start"} />
-            <Message placing={"chat-end"} />
+            {loading &&
+                [...Array(3)].map((_, index) => (
+                    <MessageSkeleton key={index} />
+                ))}
         </div>
     )
 }
