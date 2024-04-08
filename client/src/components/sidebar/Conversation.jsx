@@ -3,7 +3,7 @@ import useConversation from "../../zustand/useConversation"
 const Conversation = ({ user, lastIndex }) => {
     const { selectedConversation, setSelectedConversation } = useConversation()
     return (
-        <>
+        <div id={user._id}>
             <div
                 className={`flex gap-4 items-center justify-between transition-all hover:bg-slate-400 hover:text-white rounded px-1.5 py-2.5 cursor-pointer ${
                     selectedConversation?._id === user._id &&
@@ -28,7 +28,7 @@ const Conversation = ({ user, lastIndex }) => {
             </div>
 
             {!lastIndex && <div className="divider my-0 py-0 h-3" />}
-        </>
+        </div>
     )
 }
 export default Conversation
