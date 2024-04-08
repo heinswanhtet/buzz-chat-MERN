@@ -1,4 +1,5 @@
 import { useAuthContext } from "../../context/AuthContext"
+import { extractTime } from "../../utils/extractTime"
 import useConversation from "../../zustand/useConversation"
 
 const Message = ({ message }) => {
@@ -11,6 +12,8 @@ const Message = ({ message }) => {
     //     : selectedConversation.name.charAt(0).toUpperCase()
     const chatHeader = isFromMe ? user.name : selectedConversation.name
     const bubbleBgColor = !isFromMe ? "bg-white text-black" : ""
+    // const formattedTime = message.createdAt
+    const formattedTime = extractTime(message.createdAt)
 
     return (
         <div>
@@ -20,7 +23,7 @@ const Message = ({ message }) => {
                     {message.message}
                 </div>
                 <div className="chat-footer opacity-50">
-                    <time className="text-xs opacity-50">12:45</time>
+                    <time className="text-xs opacity-50">{formattedTime}</time>
                 </div>
             </div>
         </div>
