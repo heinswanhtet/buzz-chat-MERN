@@ -1,21 +1,22 @@
 import { useAuthContext } from "../../context/AuthContext"
+import useConversation from "../../zustand/useConversation"
 import MessageInput from "./MessageInput"
 import Messages from "./Messages"
 import { BsChatQuote } from "react-icons/bs"
 
 const MessageContainer = () => {
-    const isChatSelected = false
+    const { selectedConversation } = useConversation()
 
     return (
         <div className="md:min-w-[550px] flex-1 flex flex-col">
-            {!isChatSelected ? (
+            {!selectedConversation ? (
                 <ChatNotSelected />
             ) : (
                 <>
                     <div className="bg-[#2b3440] px-4 py-2 mb-2">
                         <span className="label-text text-white">To:</span>{" "}
                         <span className="text-white font-bold">
-                            Phone Htet Myint
+                            {selectedConversation.name}
                         </span>
                     </div>
 
