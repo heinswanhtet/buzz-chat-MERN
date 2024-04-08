@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { useAuthContext } from "../../context/AuthContext"
 import useConversation from "../../zustand/useConversation"
 import MessageInput from "./MessageInput"
@@ -5,7 +6,11 @@ import Messages from "./Messages"
 import { BsChatQuote } from "react-icons/bs"
 
 const MessageContainer = () => {
-    const { selectedConversation } = useConversation()
+    const { selectedConversation, setSelectedConversation } = useConversation()
+
+    useEffect(() => {
+        return () => setSelectedConversation(null)
+    }, [setSelectedConversation])
 
     return (
         <div className="md:min-w-[550px] flex-1 flex flex-col">
