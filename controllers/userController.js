@@ -65,7 +65,7 @@ const updateUserPassword = async (req, res) => {
 
 const getAllUsersExceptMe = async (req, res) => {
     const users = await User.find({ _id: { $ne: req.user.userId } }).select(
-        "-password"
+        "-password -isVerified -verificationToken"
     )
 
     res.status(StatusCodes.OK).json({ users })
