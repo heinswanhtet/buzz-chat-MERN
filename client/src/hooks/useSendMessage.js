@@ -14,7 +14,8 @@ const useSendMessage = () => {
                 `/api/v1/messages/send/${selectedConversation._id}`,
                 { message }
             )
-            setMessages([...messages, data.conversation.message])
+            // console.log(data)
+            setMessages([...messages, data])
         } catch (error) {
             console.log(error)
             toast.error(error.response.data.msg)

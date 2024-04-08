@@ -1,21 +1,27 @@
-const Message = ({ placing }) => {
+import { useAuthContext } from "../../context/AuthContext"
+import useConversation from "../../zustand/useConversation"
+
+const Message = ({ message }) => {
+    const { user } = useAuthContext()
+    const { selectedConversation } = useConversation()
+    const isFromMe = message.sender === user.userId
+    const chatClassName = isFromMe ? "chat-end" : "chat-start"
+    // const profileIcon = isFromMe
+    //     ? user.name.charAt(0).toUpperCase()
+    //     : selectedConversation.name.charAt(0).toUpperCase()
+    const chatHeader = isFromMe ? user.name : selectedConversation.name
+    const bubbleBgColor = !isFromMe ? "bg-white text-black" : ""
+
     return (
         <div>
-            <div className={`chat ${placing}`}>
-                <div className="chat-image avatar">
-                    <div className="w-10 rounded-full">
-                        <img
-                            alt="Tailwind CSS chat bubble component"
-                            src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
-                        />
-                    </div>
+            <div className={`chat ${chatClassName}`}>
+                <div className="chat-header px-2">{chatHeader}</div>
+                <div className={`chat-bubble ${bubbleBgColor}`}>
+                    {message.message}
                 </div>
-                <div className="chat-header">
-                    Obi-Wan Kenobi
+                <div className="chat-footer opacity-50">
                     <time className="text-xs opacity-50">12:45</time>
                 </div>
-                <div className="chat-bubble">You were the Chosen One!</div>
-                <div className="chat-footer opacity-50">Delivered</div>
             </div>
         </div>
     )

@@ -1,5 +1,6 @@
 import useGetMessage from "../../hooks/useGetMessage"
 import MessageSkeleton from "../../skeletons/MessageSkeleton"
+import Message from "./Message"
 
 const Messages = () => {
     const { loading, messages } = useGetMessage()
@@ -10,11 +11,15 @@ const Messages = () => {
                 [...Array(3)].map((_, index) => (
                     <MessageSkeleton key={index} />
                 ))}
-            {/* {!loading && messages.length === 0 && (
+            {!loading && messages.length === 0 && (
                 <p className="text-center">
                     Send a message to start the conversation
                 </p>
-            )} */}
+            )}
+            {!loading &&
+                messages.map((message) => (
+                    <Message key={message._id} message={message} />
+                ))}
         </div>
     )
 }

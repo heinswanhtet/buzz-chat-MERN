@@ -32,7 +32,7 @@ const sendMessage = async (req, res) => {
     chat.messages.push(newMessage._id)
     await chat.save()
 
-    res.status(StatusCodes.CREATED).json({ message: newMessage })
+    res.status(StatusCodes.CREATED).json(newMessage)
 }
 
 const getMessage = async (req, res) => {
@@ -43,15 +43,20 @@ const getMessage = async (req, res) => {
         participants: { $all: [userId, requestUserId] },
     }).populate({
         path: "messages",
-        populate: [
-            { path: "sender", select: "name" },
-            { path: "receiver", select: "name" },
-        ],
+        // populate: [
+        //     { path: "sender", select: "name" },
+        //     { path: "receiver", select: "name" },
+        // ],
     })
 
-    const messages = chat ? chat : []
+    // const messages = chat ? chat : []
+    if (!chat) {
+        return res.status(StatusCodes.OK).json([])
+    }
 
-    res.status(StatusCodes.OK).json({ messages })
+    const messages = chat.messages
+
+    res.status(StatusCodes.OK).json(messages)
 }
 
 module.exports = {
