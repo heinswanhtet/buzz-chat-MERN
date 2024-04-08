@@ -1,8 +1,8 @@
-const User = require('../models/User')
-const Message = require('../models/Message')
-const Chat = require('../models/Chat')
-const CustomError = require('../errors')
-const { StatusCodes } = require('http-status-codes')
+const User = require("../models/User")
+const Message = require("../models/Message")
+const Chat = require("../models/Chat")
+const CustomError = require("../errors")
+const { StatusCodes } = require("http-status-codes")
 
 const sendMessage = async (req, res) => {
     const { userId: senderId } = req.user
@@ -10,20 +10,20 @@ const sendMessage = async (req, res) => {
     const { message } = req.body
 
     if (!message)
-        throw new CustomError.BadRequestError('Please provide message to send')
+        throw new CustomError.BadRequestError("Please provide message to send")
 
     const userExist = await User.findOne({ _id: receiverId })
     if (!userExist)
-        throw new CustomError.NotFoundError('Receiver user does not exist')
+        throw new CustomError.NotFoundError("Receiver user does not exist")
 
     const newMessage = await Message.create({
         sender: senderId,
         receiver: receiverId,
-        message
+        message,
     })
 
     let chat = await Chat.findOne({
-        participants: { $all: [senderId, receiverId] }
+        participants: { $all: [senderId, receiverId] },
     })
 
     if (!chat)
@@ -32,7 +32,7 @@ const sendMessage = async (req, res) => {
     chat.messages.push(newMessage._id)
     await chat.save()
 
-    res.status(StatusCodes.CREATED).json({ message: newMessage })
+    res.status(StatusCodes.CREATED).json({ conversation: newMessage })
 }
 
 const getMessage = async (req, res) => {
@@ -40,24 +40,21 @@ const getMessage = async (req, res) => {
     const { id: requestUserId } = req.params
 
     const chat = await Chat.findOne({
-        participants: { $all: [userId, requestUserId] }
+        participants: { $all: [userId, requestUserId] },
+    }).populate({
+        path: "messages",
+        populate: [
+            { path: "sender", select: "name" },
+            { path: "receiver", select: "name" },
+        ],
     })
-        .populate(
-            {
-                path: 'messages',
-                populate: [
-                    { path: 'sender', select: 'name' },
-                    { path: 'receiver', select: 'name' }
-                ]
-            }
-        )
 
     const messages = chat ? chat : []
 
-    res.status(StatusCodes.OK).json({ messages })
+    res.status(StatusCodes.OK).json({ conversation: messages })
 }
 
 module.exports = {
     sendMessage,
-    getMessage
+    getMessage,
 }
