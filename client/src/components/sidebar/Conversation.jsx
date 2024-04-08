@@ -1,7 +1,16 @@
+import useConversation from "../../zustand/useConversation"
+
 const Conversation = ({ user, lastIndex }) => {
+    const { selectedConversation, setSelectedConversation } = useConversation()
     return (
         <>
-            <div className="flex gap-4 items-center justify-between transition-all hover:bg-slate-400 hover:text-white rounded px-1.5 py-2.5 cursor-pointer">
+            <div
+                className={`flex gap-4 items-center justify-between transition-all hover:bg-slate-400 hover:text-white rounded px-1.5 py-2.5 cursor-pointer ${
+                    selectedConversation?._id === user._id &&
+                    "bg-slate-400 text-white"
+                }`}
+                onClick={() => setSelectedConversation(user)}
+            >
                 <div className="avatar online placeholder">
                     <div className="bg-neutral text-neutral-content rounded-full w-10">
                         <span className="text-xl">
