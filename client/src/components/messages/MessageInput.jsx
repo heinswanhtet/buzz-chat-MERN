@@ -20,11 +20,11 @@ const MessageInput = () => {
     }
 
     return (
-        <form autocomplete="off" className="px-4 my-3" onSubmit={onSubmit}>
+        <form autoComplete="off" className="px-4 my-3" onSubmit={onSubmit}>
             <div className="w-full relative">
                 <input
                     type="text"
-                    autocomplete="false"
+                    autoComplete="false"
                     placeholder="Send a message"
                     className="border text-sm rounded-lg w-full p-2.5 bg-gray-700 border-gray-600 text-white outline-none"
                     name="message"
