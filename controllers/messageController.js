@@ -3,6 +3,7 @@ const Message = require("../models/Message")
 const Chat = require("../models/Chat")
 const CustomError = require("../errors")
 const { StatusCodes } = require("http-status-codes")
+const { io, getReceiverSocketId } = require("../socket/socket")
 
 const sendMessage = async (req, res) => {
     const { userId: senderId } = req.user
@@ -31,6 +32,11 @@ const sendMessage = async (req, res) => {
 
     chat.messages.push(newMessage._id)
     await chat.save()
+
+    const receiverSocketId = getReceiverSocketId(receiverId)
+    if (receiverSocketId) {
+        io.to(receiverSocketId).emit("newMessage", newMessage)
+    }
 
     res.status(StatusCodes.CREATED).json(newMessage)
 }
