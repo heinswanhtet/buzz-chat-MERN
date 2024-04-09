@@ -18,6 +18,7 @@ io.on("connection", (socket) => {
     console.log(`a user connected socket: ${socket.id}`)
 
     const userId = socket.handshake.query.userId
+
     if (userId !== "undefined") {
         userSocketMap[userId] = socket.id
     }
@@ -25,6 +26,8 @@ io.on("connection", (socket) => {
 
     socket.on("disconnect", () => {
         console.log(`a user disconnected socket: ${socket.id}\n`)
+        // delete userSocketMap[userId]
+        console.log(userSocketMap)
     })
 })
 
