@@ -14,10 +14,11 @@ const Message = ({ message }) => {
     const bubbleBgColor = !isFromMe ? "bg-white text-black" : ""
     // const formattedTime = message.createdAt
     const formattedTime = extractTime(message.createdAt)
+    const addShake = message.shake ? "shake" : ""
 
     return (
         <div>
-            <div className={`chat ${chatClassName}`}>
+            <div className={`chat ${chatClassName} ${addShake}`}>
                 <div className="chat-header px-2">{chatHeader}</div>
                 <div className={`chat-bubble ${bubbleBgColor}`}>
                     {message.message}

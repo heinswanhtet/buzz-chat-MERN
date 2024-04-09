@@ -11,6 +11,7 @@ const useListenMessages = () => {
 
         socket?.on("newMessage", (newMessage) => {
             // console.log("inner", messages)
+            newMessage.shake = true
             setMessages([...messages, newMessage])
         })
 
