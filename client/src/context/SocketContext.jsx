@@ -11,7 +11,7 @@ const SocketProvider = ({ children }) => {
 
     useEffect(() => {
         if (user) {
-            const socket = io("http://localhost:3000", {
+            const socket = io("https://buzz-chat-attv.onrender.com", {
                 query: {
                     userId: user.userId,
                 },
