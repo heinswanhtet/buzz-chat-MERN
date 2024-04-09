@@ -7,6 +7,7 @@ const SocketContext = createContext()
 const SocketProvider = ({ children }) => {
     const [socket, setSocket] = useState(null)
     const { user } = useAuthContext()
+    const [onlineUsers, setOnlineUsers] = useState([])
 
     useEffect(() => {
         if (user) {
@@ -17,6 +18,10 @@ const SocketProvider = ({ children }) => {
             })
 
             setSocket(socket)
+
+            socket.on("getOnlineUsers", (users) => {
+                setOnlineUsers(users)
+            })
 
             return () => socket.close()
         } else {

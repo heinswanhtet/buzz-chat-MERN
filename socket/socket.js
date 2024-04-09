@@ -15,7 +15,7 @@ const io = new Server(server, {
 const userSocketMap = {}
 
 io.on("connection", (socket) => {
-    console.log(`a user connected socket: ${socket.id}`)
+    // console.log(`a user connected socket: ${socket.id}`)
 
     const userId = socket.handshake.query.userId
 
@@ -24,10 +24,13 @@ io.on("connection", (socket) => {
     }
     // console.log(userSocketMap)
 
+    io.emit("getOnlineUsers", Object.keys(userSocketMap))
+
     socket.on("disconnect", () => {
-        console.log(`a user disconnected socket: ${socket.id}\n`)
-        // delete userSocketMap[userId]
-        console.log(userSocketMap)
+        // console.log(`a user disconnected socket: ${socket.id}\n`)
+        delete userSocketMap[userId]
+        // console.log(userSocketMap)
+        io.emit("getOnlineUsers", Object.keys(userSocketMap))
     })
 })
 
