@@ -1,21 +1,31 @@
-const express = require("express");
-const router = express.Router();
+const express = require("express")
+const router = express.Router()
 
-const { authenticateUser } = require("../middleware/authentication");
+const { authenticateUser } = require("../middleware/authentication")
 const {
-  register,
-  login,
-  logout,
-  verifyEmail,
-  forgotPassword,
-  resetPassword,
-} = require("../controllers/authController");
+    register,
+    login,
+    logout,
+    verifyEmail,
+    forgotPassword,
+    resetPassword,
+} = require("../controllers/authController")
 
-router.route("/register").post(register);
-router.route("/login").post(login);
-router.route("/logout").delete(authenticateUser, logout);
-router.route("/verify-email").post(verifyEmail);
-router.route("/forgot-password").post(forgotPassword);
-router.route("/reset-password").post(resetPassword);
+const rateLimiter = require("express-rate-limit")
 
-module.exports = router;
+const apiLimiter = rateLimiter({
+    windowMs: 10 * 60 * 1000,
+    max: 5,
+    message: {
+        msg: "Too many requests from this IP, please try again after 10 minutes",
+    },
+})
+
+router.route("/register").post(apiLimiter, register)
+router.route("/login").post(apiLimiter, login)
+router.route("/logout").delete(authenticateUser, logout)
+router.route("/verify-email").post(verifyEmail)
+router.route("/forgot-password").post(forgotPassword)
+router.route("/reset-password").post(resetPassword)
+
+module.exports = router
