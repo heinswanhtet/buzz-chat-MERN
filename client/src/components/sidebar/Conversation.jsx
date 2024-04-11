@@ -1,10 +1,17 @@
 import { useSocketContext } from "../../context/SocketContext"
+import { useShowSideBarAndMessageContainerContext } from "../../pages/Home"
 import useConversation from "../../zustand/useConversation"
 
 const Conversation = ({ user, lastIndex }) => {
     const { selectedConversation, setSelectedConversation } = useConversation()
     const { onlineUsers } = useSocketContext()
     const isOnline = onlineUsers.includes(user._id)
+    const {
+        showSideBar,
+        showMessageContainer,
+        setShowSideBar,
+        setShowMessageContainer,
+    } = useShowSideBarAndMessageContainerContext()
 
     return (
         <div id={user._id}>
@@ -13,7 +20,11 @@ const Conversation = ({ user, lastIndex }) => {
                     selectedConversation?._id === user._id &&
                     "bg-slate-400 text-white"
                 }`}
-                onClick={() => setSelectedConversation(user)}
+                onClick={() => {
+                    setSelectedConversation(user)
+                    setShowSideBar(!showSideBar)
+                    setShowMessageContainer(!showMessageContainer)
+                }}
             >
                 <div className={`avatar ${isOnline && "online"} placeholder`}>
                     <div className="bg-neutral text-neutral-content rounded-full w-10">
