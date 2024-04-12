@@ -4,7 +4,7 @@
 
 body {
     background: linear-gradient(rgba(214 190 207 / 82%), rgba(0, 0, 0, 0.1)),
-        url("/background-image.jpg");
+        url("/background-image-1.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: right;
